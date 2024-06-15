@@ -17,5 +17,7 @@ vim.api.nvim_set_keymap('n', '<leader>x', ':wq<CR>', { noremap = true, silent = 
 -- Next and previou buffers 
 vim.api.nvim_set_keymap('n', 'H', ':bprevious<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'L', ':bnext<CR>', { noremap = true, silent = true })
-
+-- Use <leader>n to open a new empty buffer in a vertical split
+vim.api.nvim_set_keymap('n', '<leader>s', ':vsplit <CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>x', ':split <CR>', { noremap = true, silent = true })
 
