@@ -23,6 +23,8 @@ return require('packer').startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig'
+  use 'kylechui/nvim-surround'
+  use 'windwp/nvim-autopairs'
 
   -- Auto complete 
   use 'hrsh7th/nvim-cmp'
