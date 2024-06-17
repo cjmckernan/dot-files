@@ -1,10 +1,12 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "rust_analyzer", "ast_grep" }
+  ensure_installed = { "lua_ls", "rust_analyzer", }
 })
 
 
 require("lspconfig").lua_ls.setup({})
+
+
 
 
 require("lspconfig").rust_analyzer.setup {
@@ -14,7 +16,6 @@ require("lspconfig").rust_analyzer.setup {
   },
 }
 
-require("lspconfig").ast_grep.setup({})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -34,7 +35,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<space>wl', function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
-   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
