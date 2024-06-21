@@ -14,6 +14,14 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 
+
+(setq efs/default-font-size 120)
+(setq efs/default-variable-font-size 140)
+
+(set-frame-font "Hurmit Nerd Font" nil t)
+
+
+
 ;; Initialize package sources
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -48,11 +56,16 @@
   :config
   (ivy-mode 1))
 
-;; Doom modeline configuration
+
+
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 20)))
+  :init (doom-modeline-mode 2)
+  :custom ((doom-modeline-height 38)))
+
+;; All-the-icons configuration
+(use-package nerd-icons)
+(setq nerd-icons-scale-factor 1.0)
 
 ;; Doom themes configuration
 (use-package doom-themes
@@ -61,7 +74,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics are universally disabled
-  (load-theme 'doom-acario-dark t))
+  (load-theme 'doom-city-lights t))
 
 ;; Rainbow delimiters configuration
 (use-package rainbow-delimiters
@@ -81,14 +94,6 @@
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
-
-;; All-the-icons configuration
-(use-package all-the-icons
-  :if (display-graphic-p)
-  :commands all-the-icons-install-fonts
-  :init
-  (unless (find-font (font-spec :name "all-the-icons"))
-    (all-the-icons-install-fonts t)))
 
 ;; General configuration
 (use-package general
@@ -155,6 +160,50 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
+(use-package org)
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq ls-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
+
+;; Languages 
+
+;; Python lsp pyright support 
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
+
+;; Rust mode support 
+(use-package rust-mode
+  :ensure t
+  :mode "\\.rs\\'"
+  :hook (rust-mode . lsp-deferred))
+
+(use-package yasnippet
+  :ensure t
+  :hook ((lsp-mode . yas-minor-mode)))
+
+;; Install and configure company-mode for auto-completion
+(use-package company
+  :ensure t
+  :init
+  (global-company-mode 1)
+  :config
+  (setq company-minimum-prefix-length 1
+        company-idle-delay 0.0))  ;; Set the delay before suggestions pop up
+
+;; Optional: Install and configure company-box for a nicer UI
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
+
 ;; Custom-set variables and faces
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -164,7 +213,7 @@
  '(custom-safe-themes
    '("e3daa8f18440301f3e54f2093fe15f4fe951986a8628e98dcd781efbec7a46f2" default))
  '(package-selected-packages
-   '(evil-magit magit counsel-projectile hydra evil-collection evil general ivy-rich rainbow-delimiters doom-themes doom-modeline ivy)))
+   '(yasnippet rust-mode company-box company pyvenv lsp-pyright lsp-mode evil-magit magit counsel-projectile hydra evil-collection evil general ivy-rich rainbow-delimiters doom-themes doom-modeline ivy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
