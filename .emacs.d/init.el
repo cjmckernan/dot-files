@@ -7,6 +7,9 @@
 (set-fringe-mode 10)        ; Give some breathing room
 (menu-bar-mode -1)          ; Disable the menu bar
 
+;; Remove ping
+(setq visible-bell t)
+
 ;; Key bindings
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -46,8 +49,7 @@
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
+        :map ivy-switch-buffer-map
          ("C-l" . ivy-done)
          ("C-d" . ivy-switch-buffer-kill)
          :map ivy-reverse-i-search-map
@@ -55,8 +57,6 @@
          ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
-
-
 
 (use-package doom-modeline
   :ensure t
@@ -125,21 +125,24 @@
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
 
+
+;; Evil collection 
 (use-package evil-collection
   :after evil
   :config
   (evil-collection-init))
 
-(use-package hydra)
 
+;; Hydra install 
+(use-package hydra)
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"
   ("j" text-scale-increase "in")
   ("k" text-scale-decrease "out")
   ("f" nil "finished" :exit t))
 
-(rune/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
+;; text size keybind
+(rune/leader-keys  "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 (use-package projectile
   :diminish projectile-mode
@@ -164,11 +167,11 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
+  :hook ((go-mode . lsp-deferred))
   :init
   (setq ls-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t))
-
 
 ;; Languages 
 
@@ -184,6 +187,9 @@
   :ensure t
   :mode "\\.rs\\'"
   :hook (rust-mode . lsp-deferred))
+
+(use-package go-mode
+  :ensure t)
 
 (use-package yasnippet
   :ensure t
@@ -204,6 +210,17 @@
   :hook (company-mode . company-box-mode))
 
 
+;; Smartparents 
+(use-package smartparens
+  :ensure t
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode 1)
+  ;; Enable smartparens in all programming modes
+  (add-hook 'prog-mode-hook #'smartparens-mode))
+
+
+
 ;; Custom-set variables and faces
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -213,7 +230,7 @@
  '(custom-safe-themes
    '("e3daa8f18440301f3e54f2093fe15f4fe951986a8628e98dcd781efbec7a46f2" default))
  '(package-selected-packages
-   '(yasnippet rust-mode company-box company pyvenv lsp-pyright lsp-mode evil-magit magit counsel-projectile hydra evil-collection evil general ivy-rich rainbow-delimiters doom-themes doom-modeline ivy)))
+   '(go-mode smartparens yasnippet rust-mode company-box company pyvenv lsp-pyright lsp-mode evil-magit magit counsel-projectile hydra evil-collection evil general ivy-rich rainbow-delimiters doom-themes doom-modeline ivy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
