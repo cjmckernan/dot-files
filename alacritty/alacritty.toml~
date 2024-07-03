@@ -1,0 +1,56 @@
+# Configuration for Alacritty, the GPU-accelerated terminal emulator
+
+[window]
+dimensions = { columns = 120, lines = 30 }
+padding = { x = 5, y = 5 }
+dynamic_padding = false
+decorations = "full"
+transparency = 0.8
+
+[font]
+normal = { family = "Monospace", style = "Regular" }
+size = 11.0
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[colors]
+# Default colors
+[colors.primary]
+background = "0x1a1b26"
+foreground = "0xa9b1d6"
+
+# Normal colors
+[colors.normal]
+black = "0x414868"
+red = "0xf7768e"
+green = "0x9ece6a"
+yellow = "0xe0af68"
+blue = "0x7aa2f7"
+magenta = "0xbb9af7"
+cyan = "0x7dcfff"
+white = "0xa9b1d6"
+
+# Bright colors
+[colors.bright]
+black = "0x565f89"
+red = "0xf7768e"
+green = "0x9ece6a"
+yellow = "0xe0af68"
+blue = "0x7aa2f7"
+magenta = "0xbb9af7"
+cyan = "0x7dcfff"
+white = "0xc0caf5"
+
+# Cursor colors
+[colors.cursor]
+text = "0x1a1b26"
+cursor = "0xa9b1d6"
+
+background_opacity = 0.8
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+color = "0xff0000"
