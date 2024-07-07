@@ -13,7 +13,6 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'ellisonleao/gruvbox.nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
@@ -29,8 +28,7 @@ return require('packer').startup(function(use)
     'jose-elias-alvarez/null-ls.nvim',
     require = { 'nvim-lua/plenary.nvim' }
   }
-
-  -- Auto complete
+  use 'NTBBloodbath/doom-one.nvim'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'

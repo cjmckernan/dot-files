@@ -17,19 +17,19 @@ multiplier = 3
 [colors]
 # Default colors
 [colors.primary]
-background = "0x1a1b26"
-foreground = "0xa9b1d6"
+background = "0x282c34"
+foreground = "0xbbc2cf"
 
 # Normal colors
 [colors.normal]
-black = "0x414868"
-red = "0xf7768e"
-green = "0x9ece6a"
-yellow = "0xe0af68"
-blue = "0x7aa2f7"
-magenta = "0xbb9af7"
-cyan = "0x7dcfff"
-white = "0xa9b1d6"
+black = "0x282c34"
+red = "0xff6c6b"
+green = "0x98be65"
+yellow = "0xecbe7b"
+blue = "0x51afef"
+magenta = "0xc678dd"
+cyan = "0x46d9ff"
+white = "0xbbc2cf"
 
 # Bright colors
 [colors.bright]
@@ -47,8 +47,9 @@ white = "0xc0caf5"
 text = "0x1a1b26"
 cursor = "0xa9b1d6"
 
-
 [bell]
 animation = "EaseOutExpo"
 duration = 0
 color = "0xff0000"
+
+

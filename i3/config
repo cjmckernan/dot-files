@@ -13,9 +13,14 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Hurmit Nerd Font 12 
+font pango:Hurmit Nerd Font 12
 
+# Launch polybar 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+
+# Set wallpaper
+exec --no-startup-id feh --bg-scale /home/bitwave/Documents/wallpaper/wpaper.png
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -65,10 +70,10 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -77,10 +82,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -89,7 +94,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+u split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -127,13 +132,10 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-
 # Set workspace
 workspace 1 output DP-2
 workspace 2 output DP-4
 exec --no-startup-id xrandr --output DP-2 --left-of DP-4
-
-
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -198,3 +200,18 @@ bindsym $mod+r mode "resize"
 #bar {
 #        status_command i3status
 #}
+
+# Define colors for the `doom-one` theme
+set $bg-color           #282c34
+set $inactive-bg-color  #21242b
+set $text-color         #bbc2cf
+set $inactive-text-color #5b6268
+set $urgent-bg-color    #ff6c6b
+set $urgent-text-color  #282c34
+
+# Use the colors in your configuration
+client.focused          $bg-color $bg-color $text-color $text-color
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-text-color
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-text-color
+client.urgent           $urgent-bg-color $urgent-bg-color $urgent-text-color $urgent-text-color
+
