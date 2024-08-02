@@ -1,4 +1,4 @@
- (setq inhibit-startup-message t)
+(setq inhibit-startup-message t)
 
 ;; Disable UI elements
 (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -17,13 +17,10 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 
-
 (setq efs/default-font-size 120)
 (setq efs/default-variable-font-size 140)
 
 (set-frame-font "Hurmit Nerd Font" nil t)
-
-
 
 ;; Initialize package sources
 (require 'package)
@@ -49,7 +46,7 @@
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
-        :map ivy-switch-buffer-map
+         :map ivy-switch-buffer-map
          ("C-l" . ivy-done)
          ("C-d" . ivy-switch-buffer-kill)
          :map ivy-reverse-i-search-map
@@ -60,7 +57,7 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 2)
+  :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 38)))
 
 ;; All-the-icons configuration
@@ -98,14 +95,16 @@
 ;; General configuration
 (use-package general
   :config
-  (general-create-definer rune/leader-keys
+  (general-create-definer leader-keys
     :keymaps '(normal insert visual emacs)
     :prefix "SPC"
     :global-prefix "C-SPC")
 
-  (rune/leader-keys
+  (leader-keys
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")))
+
+(leader-keys "q" 'neotree-toggle)
 
 (use-package evil
   :init
@@ -125,13 +124,20 @@
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
 
+;; Neotree configuration
+(use-package neotree
+  :ensure t
+  :config
+  ;; Set keybinding for toggling neotree
+  (global-set-key [f8] 'neotree-toggle)
+  ;; You can customize more neotree settings here
+  (setq neo-theme 'icons)) ;; If you want to use icons, you might need to install the 'all-the-icons' package
 
 ;; Evil collection 
 (use-package evil-collection
   :after evil
   :config
   (evil-collection-init))
-
 
 ;; Hydra install 
 (use-package hydra)
@@ -142,7 +148,7 @@
   ("f" nil "finished" :exit t))
 
 ;; text size keybind
-(rune/leader-keys  "ts" '(hydra-text-scale/body :which-key "scale text"))
+(leader-keys  "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 (use-package projectile
   :diminish projectile-mode
@@ -167,20 +173,24 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook ((go-mode . lsp-deferred))
+  :hook ((go-mode . lsp-deferred)
+         (c++-mode . lsp)
+         (c-mode . lsp))
   :init
-  (setq ls-keymap-prefix "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t))
 
-;; Languages 
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
 
 ;; Python lsp pyright support 
 (use-package lsp-pyright
   :ensure t
   :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+                         (require 'lsp-pyright)
+                         (lsp))))  ; or lsp-deferred
 
 ;; Rust mode support 
 (use-package rust-mode
@@ -190,6 +200,24 @@
 
 (use-package go-mode
   :ensure t)
+
+;; web-mode
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(use-package web-mode
+  :ensure t
+  :mode (("\\.js\\'" . web-mode)
+         ("\\.jsx\\'" .  web-mode)
+         ("\\.ts\\'" . web-mode)
+         ("\\.tsx\\'" . web-mode)
+         ("\\.html\\'" . web-mode))
+  :commands web-mode)
+
+;; flycheck
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 
 (use-package yasnippet
   :ensure t
@@ -209,18 +237,6 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
-
-;; Smartparents 
-(use-package smartparens
-  :ensure t
-  :config
-  (require 'smartparens-config)
-  (smartparens-global-mode 1)
-  ;; Enable smartparens in all programming modes
-  (add-hook 'prog-mode-hook #'smartparens-mode))
-
-
-
 ;; Custom-set variables and faces
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -230,10 +246,7 @@
  '(custom-safe-themes
    '("e3daa8f18440301f3e54f2093fe15f4fe951986a8628e98dcd781efbec7a46f2" default))
  '(package-selected-packages
-   '(go-mode smartparens yasnippet rust-mode company-box company pyvenv lsp-pyright lsp-mode evil-magit magit counsel-projectile hydra evil-collection evil general ivy-rich rainbow-delimiters doom-themes doom-modeline ivy)))
+   '(flycheck lsp-ui web-mode lsp-typescript typescript-mode js2-mode neotree go-mode smartparens yasnippet rust-mode company-box company pyvenv lsp-pyright lsp-mode evil-magit magit counsel-projectile hydra evil-collection evil general ivy-rich rainbow-delimiters doom-themes doom-modeline ivy)))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+ ;; custom-set-f
+
