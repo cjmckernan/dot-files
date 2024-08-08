@@ -17,39 +17,41 @@ multiplier = 3
 [colors]
 # Default colors
 [colors.primary]
-background = "0x282c34"
-foreground = "0xbbc2cf"
+background = "0x24283b" # Storm background color
+foreground = "0xc0caf5" # Light steel blue foreground
 
 # Normal colors
 [colors.normal]
-black = "0x282c34"
-red = "0xff6c6b"
-green = "0x98be65"
-yellow = "0xecbe7b"
-blue = "0x51afef"
-magenta = "0xc678dd"
-cyan = "0x46d9ff"
-white = "0xbbc2cf"
+black = "0x1d202f" # Near-black
+red = "0xf7768e"   # Soft red
+green = "0x9ece6a" # Light green
+yellow = "0xe0af68" # Light yellow
+blue = "0x7aa2f7"  # Light blue
+magenta = "0xad8ee6" # Soft magenta (slightly different from night variant)
+cyan = "0x7dcfff"  # Light cyan
+white = "0xa9b1d6" # Light gray
 
 # Bright colors
 [colors.bright]
-black = "0x565f89"
-red = "0xf7768e"
-green = "0x9ece6a"
-yellow = "0xe0af68"
-blue = "0x7aa2f7"
-magenta = "0xbb9af7"
-cyan = "0x7dcfff"
-white = "0xc0caf5"
+black = "0x414868" # Dark gray
+red = "0xf7768e"   # Bright red
+green = "0x9ece6a" # Bright green
+yellow = "0xe0af68" # Bright yellow
+blue = "0x7aa2f7"  # Bright blue
+magenta = "0xad8ee6" # Bright magenta
+cyan = "0x7dcfff"  # Bright cyan
+white = "0xc0caf5" # Bright white
 
 # Cursor colors
 [colors.cursor]
-text = "0x1a1b26"
-cursor = "0xa9b1d6"
+text = "0x24283b" # Cursor text color
+cursor = "0xc0caf5" # Cursor color
 
 [bell]
 animation = "EaseOutExpo"
 duration = 0
-color = "0xff0000"
+color = "0xff0000" # Bell color (keeping it as is)
+
+
 
 
