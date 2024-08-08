@@ -1,42 +1,31 @@
-require("lspconfig").lua_ls.setup({})
+-- Import lspconfig
+local lspconfig = require("lspconfig")
 
-require("lspconfig").rust_analyzer.setup({
-	-- Server-specific settings. See `:help lspconfig-setup`
+-- Configure lua_ls
+lspconfig.lua_ls.setup({})
+
+-- Configure rust_analyzer
+lspconfig.rust_analyzer.setup({
 	settings = {
 		["rust-analyzer"] = {},
 	},
 })
 
-require("lspconfig").pyright.setup({})
+-- Configure pyright
+lspconfig.pyright.setup({})
 
-require("lspconfig").gopls.setup({})
+-- Configure gopls
+lspconfig.gopls.setup({})
 
-require("lspconfig").clangd.setup({})
+-- Configure clangd
+lspconfig.clangd.setup({})
 
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-	callback = function(ev)
-		-- Enable completion triggered by <c-x><c-o>
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+local config = {
+  cmd = {'java-lsp.sh'},  -- You'll need to create a script to start jdtls
+  root_dir = lspconfig.util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle"),
+  settings = {
+    java = {}
+  }
+}
 
-		-- Buffer local mappings.
-		-- See `:help vim.lsp.*` for documentation on any of the below functions
-		local opts = { buffer = ev.buf }
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-		vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-		vim.keymap.set("n", "<space>wl", function()
-			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, opts)
-		vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<space>f", function()
-			vim.lsp.buf.format({ async = true })
-		end, opts)
-	end,
-})
+lspconfig.jdtls.setup(config)

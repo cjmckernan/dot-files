@@ -23,7 +23,6 @@ return require("packer").startup(function(use)
 	use("kylechui/nvim-surround")
 	use("windwp/nvim-autopairs")
 	use("jose-elias-alvarez/null-ls.nvim")
-	use("nvim-lua/plenary.nvim")
 	use("NTBBloodbath/doom-one.nvim")
 	use("hrsh7th/nvim-cmp")
 	use("hrsh7th/cmp-nvim-lsp")
@@ -35,7 +34,7 @@ return require("packer").startup(function(use)
 	use("rafamadriz/friendly-snippets")
 	use("nvim-orgmode/orgmode")
 	use("windwp/nvim-ts-autotag")
-
+	use("mfussenegger/nvim-jdtls")
 	if packer_bootstrap then
 		require("packer").sync()
 	end
