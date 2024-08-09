@@ -52,6 +52,3 @@ animation = "EaseOutExpo"
 duration = 0
 color = "0xff0000" # Bell color (keeping it as is)
 
-
-
-
