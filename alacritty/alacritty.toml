@@ -1,5 +1,3 @@
-# Configuration for Alacritty, the GPU-accelerated terminal emulator
-
 [window]
 dimensions = { columns = 120, lines = 30 }
 padding = { x = 5, y = 5 }
@@ -7,45 +5,41 @@ dynamic_padding = false
 decorations = "full"
 
 [font]
-normal = { family = "Monospace", style = "Regular" }
+normal = { family = "Hurmit Nerd Font Mono", style = "Regular" }
 size = 11.0
-
-[scrolling]
-history = 10000
-multiplier = 3
 
 [colors]
 # Default colors
 [colors.primary]
-background = "0x24283b" # Storm background color
-foreground = "0xc0caf5" # Light steel blue foreground
+background = "0x1e1e1e" # Dark background color
+foreground = "0xeeeeee" # Light foreground
 
 # Normal colors
 [colors.normal]
-black = "0x1d202f" # Near-black
-red = "0xf7768e"   # Soft red
-green = "0x9ece6a" # Light green
-yellow = "0xe0af68" # Light yellow
-blue = "0x7aa2f7"  # Light blue
-magenta = "0xad8ee6" # Soft magenta (slightly different from night variant)
-cyan = "0x7dcfff"  # Light cyan
-white = "0xa9b1d6" # Light gray
+black = "0x1e1e1e" # Dark background
+red = "0xd75f5f"   # Red
+green = "0x5f875f" # Green
+yellow = "0xd7afaf" # Yellow
+blue = "0x5f87af"  # Blue
+magenta = "0xaf5f87" # Magenta
+cyan = "0x87afaf"  # Cyan
+white = "0xe4e4e4" # White
 
 # Bright colors
 [colors.bright]
-black = "0x414868" # Dark gray
-red = "0xf7768e"   # Bright red
-green = "0x9ece6a" # Bright green
-yellow = "0xe0af68" # Bright yellow
-blue = "0x7aa2f7"  # Bright blue
-magenta = "0xad8ee6" # Bright magenta
-cyan = "0x7dcfff"  # Bright cyan
-white = "0xc0caf5" # Bright white
+black = "0x4e4e4e" # Dark gray
+red = "0xff6c6b"   # Bright red
+green = "0x87af87" # Bright green
+yellow = "0xffd75f" # Bright yellow
+blue = "0x87afaf"  # Bright blue
+magenta = "0xd7afaf" # Bright magenta
+cyan = "0x87d7d7"  # Bright cyan
+white = "0xffffff" # Bright white
 
 # Cursor colors
 [colors.cursor]
-text = "0x24283b" # Cursor text color
-cursor = "0xc0caf5" # Cursor color
+text = "0x1e1e1e" # Cursor text color
+cursor = "0xeeeeee" # Cursor color
 
 [bell]
 animation = "EaseOutExpo"
